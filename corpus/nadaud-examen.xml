@@ -1,0 +1,213 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="fre001072" xml:lang="fre">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title type="main">L'Examen de Conscience d'une Jeune Fille</title>
+                <title type="sub">Comédie</title>
+                <author>
+      <idno type="isni">000000012281664X</idno>
+      <idno type="wikidata">Q3121274</idno>
+      <persName>
+        <forename>Gustave</forename>
+        <surname>Nadaud</surname>
+      </persName>
+    </author><!--NADAUD, Gustave-->
+                <editor>Paul FIEVRE</editor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher xml:id="dracor">DraCor</publisher>
+                <idno type="URL">https://dracor.org</idno>
+                <availability>
+                    <licence>
+                        <ab>CC BY-NC-SA 4.0</ab>
+                        <ref target="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licence</ref>
+                    </licence>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <bibl type="digitalSource">
+                    <name>Théâtre Classique</name>
+                    <idno type="URL">http://theatre-classique.fr/pages/programmes/edition.php?t=../documents/NADAUD_EXAMEN.xml</idno>
+                    <idno type="URL">http://theatre-classique.fr/pages/documents/NADAUD_EXAMEN.xml</idno>
+                    <availability>
+                        <licence>
+                            <ab>CC BY-NC-SA 4.0</ab>
+                            <ref target="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licence</ref>
+                        </licence>
+                    </availability>
+                    <bibl type="originalSource">
+                        <idno type="URL">http://gallica.bnf.fr/ark:/12148/bpt6k2079440</idno>
+                    </bibl>
+                </bibl>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <particDesc>
+                <listPerson>
+                    <person xml:id="la-jeune-fille" sex="UNKNOWN"><!--WARNING: no castItem found for reference in @who-->
+                        <persName>La Jeune Fille</persName>
+                    </person>
+                </listPerson>
+            </particDesc>
+            <textClass>
+                <keywords scheme="http://theatre-classique.fr"> <!--extracted from "genre" and "type" elements-->
+                    <term type="genre">comedy</term>
+                    <term type="form">verse</term>
+                </keywords>
+                <classCode scheme="http://www.wikidata.org/entity/">Q40831</classCode>
+            </textClass>
+        </profileDesc>
+        <revisionDesc>
+            <listChange>
+                <change when="2020-12-04">(mg) file conversion from source</change>
+            </listChange>
+        </revisionDesc>
+    </teiHeader>
+    <standOff>
+        <listEvent>
+            <event type="print" when="1881">
+                <desc/>
+            </event>
+        </listEvent>
+    </standOff>
+    <text>
+	<front>
+		<docTitle>
+			<titlePart type="main">L'EXAMEN DE CONSCIENCE D'UNE JEUNE FILLE</titlePart>
+			<titlePart type="sub">COMÉDIE</titlePart>
+		</docTitle> 
+		<docDate when="1881">1881. Tous droits réservés.</docDate>
+		<docAuthor>Par M. Gustave NADAUD.</docAuthor>
+		<div type="docImprint">
+			<!--TODO: handling of editor name at this place unclear <editor id="TRESSE">PARIS, TRESSE Éditeur, GALERIE DU THÉÂTRE-FRANÇAIS, PALAIS ROYAL.</editor>-->
+			<div type="printer">
+                    <p>F. Aureau, Imprimerie de Lagny.</p>
+                </div>
+		</div>
+	<castList>
+                <head>LES PERSONNAGES</head>
+		<castItem>
+                    <role corresp="#une-jeune-fille">UNE JEUNE FILLE</role><!--@sex="2"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="J"--><!--@stat_amour="néant"-->.</castItem> 
+	</castList>
+<!--TODO: usage of set in correct place but with unknown attributes <set location="France" country="France" periode="XIXème" gps="(N/A)"/>-->
+<note>Paru dans SAYNÈTES ET MONOLOGUES, PREMIÈRE PARTIE, pp. 152-158</note>
+</front>
+<body>
+<div type="act" n="1">
+                <head>L'EXAMEN DE CONSCIENCE D'UNE JEUNE FILLE</head>
+<div type="scene" n="1">
+                    <head/>
+<sp who="#la-jeune-fille">
+                        <speaker>[LA JEUNE FILLE].</speaker><!--<poem>-->
+                        <ab type="strophes">
+<lg n="1">
+	<l n="1">Je le sais par expérience</l>
+	<l n="2">(Je suis grande, j'ai dix-sept ans),</l>
+	<l n="3">On doit faire de temps en temps</l>
+	<l n="4">Son examen de conscience.</l>
+	<l n="5">Cela repose et fait du bien ;</l>
+	<l n="6">Je vais donc commencer le mien.</l>
+</lg>
+<lg n="2">
+	<l n="7">Ce matin, j'ai fait ma prière ;</l>
+	<l n="8">Je l'ai faite encore ce soir.</l>
+	<l n="9">J'accomplis ce double devoir</l>
+	<l n="10">D'une façon très régulière,</l>
+	<l n="11">Et sur ce point, j'ai beau chercher,</l>
+	<l n="12">Je n'ai rien à me reprocher.</l>
+</lg>
+<lg n="3">
+	<l n="13">Comme nous sommes en carême,</l>
+	<l n="14">J'ai dû jouir d'un long sermon</l>
+	<l n="15">Par monsieur l'Abbé Salomon.</l>
+	<l n="16">Je puis m'avouer à moi-même</l>
+	<l n="17">Que je n'ai pas très-bien saisi</l>
+	<l n="18">Le sujet qu'il avait choisi.</l>
+</lg>
+<lg n="4">
+	<l n="19">Il a beaucoup parlé du doute</l>
+	<l n="20">C'est affreux, à ce qu'il disait.</l>
+	<l n="21">Moi, je ne sais pas ce que c'est ;</l>
+	<l n="22">On n'entend que ce qu'on écoute ;</l>
+	<l n="23">Or, je n'ai jamais écouté</l>
+	<l n="24">Ce qui n'est pas la vérité.</l>
+</lg>
+<lg n="5">
+	<l n="25">Continuons notre journée :</l>
+	<l n="26">J'ai rencontré sur mon chemin</l>
+	<l n="27">Un pauvre ; mais j'avais la main</l>
+	<l n="28">Dans un gant neuf emprisonnée.</l>
+	<l n="29">Les gants, les gants, en vérité,</l>
+	<l n="30">C'est la mort de la charité.</l>
+</lg>
+<lg n="6">
+	<l n="31">J'ai pris ma leçon de musique.</l>
+	<l n="32">Mon maître est un de ces vieux beaux</l>
+	<l n="33">Préoccupés mal à propos</l>
+	<l n="34">De ce qu'ils nomment leur physique.</l>
+	<l n="35">Il croit être un grand conquérant...</l>
+	<l n="36">Un fort bon homme au demeurant.</l>
+</lg>
+<lg n="7">
+	<l n="37">Voyons, qu'ai-je pu faire encore ?</l>
+	<l n="38">Gourmande. je ne le suis pas ;</l>
+	<l n="39">Mais je fais bien mes trois repas.</l>
+	<l n="40">Je ne veux pas imiter Laure</l>
+	<l n="41">Qui se laisse mourir de faim</l>
+	<l n="42">Pour ne pas engraisser... Enfin...</l>
+</lg>
+<lg n="8">
+	<l n="43">Chacun son goût et sa folie.</l>
+	<l n="44">Pour moi, je n'ai jamais compris</l>
+	<l n="45">Que la maigreur eût tant de prix.</l>
+	<l n="46">Je ne suis pas très, très jolie ;</l>
+	<l n="47">Mais ce n'est pas déjà si mal</l>
+	<l n="48">Que d'être au diapason normal.</l>
+</lg>
+<lg n="9">
+	<l n="59">D'ailleurs, on peut, sans être belle,</l>
+	<l n="60">Avoir du charme, de l'esprit ;</l>
+	<l n="61">La lèvre qui cause et sourit.</l>
+	<l n="62">Eh bien, eh bien, mademoiselle,</l>
+	<l n="63">Voilà qui peut être porté</l>
+	<l n="64">Au compte de la vanité.</l>
+</lg>
+<lg n="10">
+	<l n="65">Auriez-vous péché par envie ?</l>
+	<l n="66">Ce matin, vous faisiez des voeux</l>
+	<l n="67">Pour aller au « seront chez eux »</l>
+	<l n="68">De vos oncle et tante Octavie.</l>
+	<l n="69">Ma foi, non ! Pour prendre du thé,</l>
+	<l n="70">Du whist et du piano forte,</l>
+</lg>
+<lg n="11">
+	<l n="71">Ce ne sont pas choses pressées.</l>
+	<l n="72">Et puis, le luxe, les splendeurs,</l>
+	<l n="73">Le bruit, la musique, les fleurs</l>
+	<l n="74">Donnent de mauvaises pensées...</l>
+	<l n="75">Ma foi, non ! Le monde où je vais</l>
+	<l n="76">N'est ni si beau ni si mauvais.</l>
+</lg>
+<lg n="12">
+	<l n="77">Dans vos réflexions secrètes,</l>
+	<l n="78">N'avez-vous pas encor trouvé</l>
+	<l n="79">L'idéal, le mari rêvé ?</l>
+	<l n="80">Ma foi, non ! Les beaux sont trop bêtes</l>
+	<l n="81">Les bêtes, moi, je leur déplais,</l>
+	<l n="82">Et les non bêtes sont trop laids.</l>
+</lg>
+<lg n="13">
+	<l n="83">En résumé, Mademoiselle,</l>
+	<l n="84">Vous n'avez fait ni mal ni bien,</l>
+	<l n="85">Appelez votre ange gardien</l>
+	<l n="86">Pour vous abriter sous son aile.</l>
+	<l n="87">Endormez-vous tout doucement :</l>
+	<l n="88">On ne pèche pas en dormant.</l>
+</lg>
+</ab><!--</poem>-->
+                    </sp><!--@who="LA JEUNE FILLE"-->
+</div>
+</div>
+</body>
+</text>
+</TEI>

@@ -1,0 +1,235 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="fre000657" xml:lang="fre">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title type="main">Orphée, ou Arlequin aux Enfers</title>
+                <title type="sub">Divertissement qui A Eté Joué Ensuite du Pédant le Samedi Douze Septembre 1711.</title>
+                <author>
+      <idno type="isni">0000000083620416</idno>
+      <idno type="wikidata">Q3261972</idno>
+      <persName>
+        <forename>Louis</forename>
+        <surname>Fuzelier</surname>
+      </persName>
+    </author><!--FUZELIER, Louis-->
+                <editor>Paul FIEVRE décembre 2013</editor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher xml:id="dracor">DraCor</publisher>
+                <idno type="URL">https://dracor.org</idno>
+                <availability>
+                    <licence>
+                        <ab>CC BY-NC-SA 4.0</ab>
+                        <ref target="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licence</ref>
+                    </licence>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <bibl type="digitalSource">
+                    <name>Théâtre Classique</name>
+                    <idno type="URL">http://theatre-classique.fr/pages/programmes/edition.php?t=../documents/FUZELIER_ORPHEE.xml</idno>
+                    <idno type="URL">http://theatre-classique.fr/pages/documents/FUZELIER_ORPHEE.xml</idno>
+                    <availability>
+                        <licence>
+                            <ab>CC BY-NC-SA 4.0</ab>
+                            <ref target="https://creativecommons.org/licenses/by-nc-sa/4.0/">Licence</ref>
+                        </licence>
+                    </availability>
+                    <bibl type="originalSource">
+                        <idno type="URL">http://gallica.bnf.fr/ark:/12148/bpt6k745013</idno>
+                    </bibl>
+                </bibl>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <particDesc>
+                <listPerson>
+                    <person xml:id="un-des-songes" sex="UNKNOWN"><!--WARNING: no castItem found for reference in @who-->
+                        <persName>Un des Songes</persName>
+                    </person>
+                    <person xml:id="arlequin" sex="MALE">
+                        <persName>Arlequin</persName>
+                    </person>
+                    <person xml:id="scaramouche" sex="MALE">
+                        <persName>Scaramouche</persName>
+                    </person>
+                </listPerson>
+            </particDesc>
+            <textClass>
+                <keywords scheme="http://theatre-classique.fr"> <!--extracted from "genre" and "type" elements-->
+                    <term>Divertissement</term>
+                    <term type="form">verse</term>
+                </keywords>
+            </textClass>
+        </profileDesc>
+        <revisionDesc>
+            <listChange>
+                <change when="2020-12-04">(mg) file conversion from source</change>
+            </listChange>
+        </revisionDesc>
+    </teiHeader>
+    <standOff>
+        <listEvent>
+            <event type="print" when="1711">
+                <desc/>
+            </event>
+            <event type="premiere" when="1716-09-12">
+                <desc>Représentée pour la première fois à la Foire Saint-Laurent, le 12 septembre 1711.</desc>
+            </event>
+        </listEvent>
+    </standOff>
+    <text>
+		<front>
+			<docTitle>
+				<titlePart type="main">ORPHÉE, OU ARLEQUIN AUX ENFERS</titlePart>
+				<titlePart type="sub">DIVERTISSEMENT QUI a été joué ensuite du Pédant le samedi douze Septembre 1711.</titlePart>
+			</docTitle>
+			<docDate when="1711">M. DCC. XI.</docDate>
+			 
+			<div type="docImprint">
+				<div type="privilege">
+                    <head>APPROBATION.</head>
+				<p>J'AI lu par ordre de Monsieur le Lieutenant Général de Police un manuscrit intitulé, Scaramouche Pedant et Arlequin Orphée, dont on peut permettre l'impression. A Paris ce 5. Septembre 1711.</p>
+				<p>PASSART.</p>
+				<p>PERMISSION.</p>
+				<p>VU l'Approbation du sieur Passart, permis d'imprimer. A Paris ce 5. Septembre 1711.</p>
+				<p>M. DE VOYER D'ARGENSON.</p>
+				<p>Registré sur le livre de la Communauté le 11 Septembre 1711. DE LAUNAY. Syndic.</p>
+				</div><!--@id="17**-**-**"-->
+				<div type="printer">
+                    <p>De l'Imprimerie de G. VALLEYRE, rue S. Jacques, a la ville de Riom.</p>
+                </div><!--@id="***"-->
+				<div type="acheveImprime">
+                    <p/>
+                </div><!--@id="17**-**-**"-->
+			</div>
+			<performance>
+				<ab type="premiere">Représentée pour la première fois à la Foire Saint-Laurent, le 12 septembre 1711.</ab><!--@date="1716-09-12"--><!--@location="Foire Saint-Laurent"-->
+				<ab type="casting"/>
+				 		
+			</performance>
+<castList>
+                <head>ACTEURS</head>
+	<castItem>
+                    <role corresp="#arlequin">ARLEQUIN</role><!--@sex="1"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#scaramouche">SCARAMOUCHE</role><!--@sex="1"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#pluton">PLUTON</role><!--@sex="1"--><!--@type="D"--><!--@statut="dieu"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#proserpine">PROSEPINE</role><!--@sex="1"--><!--@type="D"--><!--@statut="dieu"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#suite-infernale">SUITE INFERNALE</role><!--@sex="9"--><!--@type="D"--><!--@statut="suite"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#un-chinois">UN CHINOIS</role><!--@sex="1"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#suite-du-chinois">SUITE DU CHINOIS</role><!--@sex="9"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#troupe-de-songes">TROUPE DE SONGES</role><!--@sex="9"--><!--@type="O"--><!--@statut="songe"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#deux-furies">DEUX FURIES</role><!--@sex="2"--><!--@type="D"--><!--@statut="furie"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#cerbere">CERBÈRE</role><!--@sex="9"--><!--@type="P"--><!--@statut="animal fantastique"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#monstres-de-l-enfer">MONSTRES DE L'ENFER</role><!--@sex="9"--><!--@type="P"--><!--@statut="animal fantastique"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#un-romain">UN ROMAIN</role><!--@sex="1"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+	<castItem>
+                    <role corresp="#un-intendant">UN INTENDANT</role><!--@sex="1"--><!--@type="H"--><!--@statut="bourgeois"--><!--@age="A"--><!--@stat_amour="néant"-->.</castItem>
+</castList>
+<!--TODO: usage of set in correct place but with unknown attributes <set location="Lieu mythologique" country="Pays mythologique" periode="Temps mythologiques" gps="(N/A)">La Scène est aux Enfers.</set>-->
+</front>
+<body>
+<div type="act" n="1">
+                <head>ORPHÉE AUX ENFERS</head>
+<div type="scene" n="1">
+                    <head>SCENE I.</head>
+<stage type="decor">Le théâtre représente une montagne : et dans le fond une bouche d'Enfer. Arlequin sort de la montagne et s'endort sur un gazon, plusieurs songes agréables voltigent autour de lui et font un ballet ; et un des songes présente ce couplet, sur l'air : « Ici chacun s'engage ».</stage>
+<sp who="#un-des-songes">
+                        <speaker>UN DES SONGES.</speaker>
+                        <l n="1">L'amour est une rage</l>
+                        <l n="2">Ou plûtôt un poison,</l>
+                        <l n="3">Qui par son feu volage</l>
+                        <l n="4">Nous ôte la raison.</l>
+                        <l n="5">Fuyez cet esclavage</l>
+                        <l n="6">Fatal à tant d'époux,</l>
+                        <l n="7">Restez dans le veuvage,</l>
+                        <l n="8">Il n'est rien de si doux.</l>
+                        <stage type="exit/show">Les songes agréables se retirent à l'approche du Dieu d'Amour qui montre ce couplet.</stage>
+                    </sp><!--@who="UN DES SONGES"-->
+</div>
+<div type="scene" n="2">
+                    <head>SCÈNE II.</head>
+<stage type="sing/hurt/fly">Le Vaudeville chanté, il décoche une de ses flèches à Arlequin et ensuite s'envole.</stage>
+</div>
+<div type="scene" n="3">
+                    <head>SCÈNE III.</head>
+<stage type="awake/yawn">Arlequin s'éveille en baillant, il fait plusieurs lazzi sur ce qu'il a vu en songe, et ensuite il présente ce couplet, sur l'air : « Tout cela m'est indifférent ».</stage>
+<sp who="#arlequin">
+                        <speaker>[ARLEQUIN].</speaker>
+                        <l n="9">Si je reprends ma femme hélas !</l>
+                        <l n="10">Quels caquets ne fera-t-on pas ?</l>
+                        <l n="11">Ôtons cela de notre tête :</l>
+                        <l n="12">Car si l'on dit que c'est mal fait,</l>
+                        <l n="13">J'ai ma réponse toute prête,</l>
+                        <l n="14">C'est que tout le monde le fait.</l>
+                    </sp><!--@who="ARLEQUIN"-->
+</div>
+<div type="scene" n="4">
+                    <head>SCÈNE IV.</head>
+<stage type="entrance/action">Scaramouche arrive. Arlequin le prie de venir aux Enfers où il veut aller pour y reprendre sa femme. Scaramouche hésite d'y descendre ; mais à la fin y ayant consenti, ils se déshabillent, et jettent leurs hardes dans le trou. Dans le temps qu'ils veulent sauter dans l'Enfer, Cerbère sort environné de flammes avec deux Furies, et veut dévorer Arlequin qui les charme par sa lyre, et plusieurs autres monstres de l'Enfer. Arlequin fait plusieurs jeux de théâtre avec les Monstres, ce qui finit cette scène.</stage>
+</div>
+<div type="scene" n="5">
+                    <head>SCÈNE V.</head>
+<stage type="decor/sing">Le théâtre change et représente le Palais de Pluton. Arlequin et Scaramouche veulent y entrer, un Ours les en empêche : ce qui donne lieu à ce couplet, sur l'air de Grimaudin.</stage>
+<sp who="#arlequin">
+                        <speaker>[ARLEQUIN].</speaker>
+                        <note type="L">Suisse : Valet qui gardait l'entrée d'une maison, homme de maison, portier.</note>
+                        <l n="15">Ce vilain Suisse fait connaître</l>
+                        <l n="16">À tous venants,</l>
+                        <l n="17">Qu'on ne parle point de son maître</l>
+                        <l n="18">Que par argent,</l>
+                        <l n="19">Cette inexorable rigueur</l>
+                        <note type="L">Apprentif : Celui qui est novice dans les arts et les sciences. [F]</note>
+                        <l n="20">Sent l'apprentif Agioteur.</l>
+                    </sp><!--@who="ARLEQUIN"-->
+</div>
+<div type="scene" n="6">
+                    <head>SCÈNE VI.</head>
+<stage type="watch/open/show">Arlequin charme le Suisse par sa lyre, Proserpine qui l'entend, et qui en est charmée fait ouvrir une porte : elle paraît sur son trône à côté de Pluton et entourée de sa Cour infernale. Arlequin montre ce couplet, sur l'air « Des folies d'Espagne ».</stage>
+<sp who="#arlequin">
+                        <speaker>ARLEQUIN.</speaker>
+                        <l n="21">Pour Colombine ici l'amour m'amène,</l>
+                        <l n="22">Loin de ses yeux je souffre extrêmement ;</l>
+                        <l n="23">Déesse hélas, pour soulager ma peine</l>
+                        <l n="24">Je ne voudrais que la voir un moment.</l>
+                        <stage type="danse/fly/music">Proserpine prie Pluton de lui accorder sa demande, ce qu'il lui refuse. Les Furies dansent une entrée et voltigent au tour d'Arlequin et de Scaramouche. Les danses finies on entend une symphonie agréable.</stage>
+                    </sp><!--@who="ARLEQUIN"-->
+</div>
+<div type="scene" n="7">
+                    <head>SCÈNE DERNIÈRE.</head>
+<stage type="entrance/lazzi">Un Chinois arrive en Enfer posté sur un brancard, il est bien reçu par Pluton : la suite du Chinois forme une entrée des plus comiques. Pluton dit à Arlequin de jouer quelque air sur sa lyre, Arlequin fait mille lazzi devant le Chinois. Un Romain et un Intendant viennent entendre Arlequin et se moquent de lui. Arlequin répond au Romain, sur l'air « Des folies d'Espagne ».</stage>
+<sp who="#arlequin">
+                        <speaker>ARLEQUIN.</speaker>
+                        <l n="25">Trop orgueilleux Romains que je déteste,</l>
+                        <l n="26">Qui paraissez dans le ravissement,</l>
+                        <l n="27">Si ce n'était ma femme, je proteste,</l>
+                        <l n="28">Je ne jouerais plus de cet instrument.</l>
+                        <stage type="toward/title">Scaramouche dit à l'Intendant, sur l'air : Jeune garçon de quinze ans.</stage>
+                    </sp><!--@who="ARLEQUIN"-->
+<sp who="#scaramouche">
+                        <speaker>SCARAMOUCHE.</speaker>
+                        <l n="29">Dites-moi Monsieur l'intendant,</l>
+                        <l n="30">Auriez-vous fait tant le fendant,</l>
+                        <l n="31">Si vous n'aviez pas comme un traître</l>
+                        <l n="32">Prêté l'argent de votre Maître</l>
+                        <l n="33">À grosse usure à vos amis</l>
+                        <l n="34">Comme font d'autres dans Paris?</l>
+                        <stage type="narration">Pluton et Proserpine font apporter une table bien servie pour régaler le Chinois : ils se mettent à table, Arlequin et Scaramouche aussi : lorsqu'ils sont prêts à manger, la table s'enlève, et il paraît plusieurs monstres affreux qui épouvantent Arlequin et Scaramouche. Quatre Furies font une entrée, et ensuite ils font voir ce que l'on prépare pour le souper de Pluton. Il se forme sur le champ une cheminée ; on découvre plusieurs petits Diablotins qui tournent à la broche un homme d'affaire, les quatre danseurs en prennent chacun un membre, et le présentent à Arlequin et à Scaramouche qui s'enfuient a la vue de ce spectacle. Pluton fait revenir Arlequin et lui vend sa femme Colombine, ensuite il montre un couplet.</stage>
+                        <stage type="danse/exit">Le couplet fini, Arlequin et Scaramouche s'en vont avec Colombine. Le Chinois fait une marche avec suite et rentrent tous dans le Palais de Pluton. Les Furies font plusieurs sauts, ce qui finit le divertissement.</stage>
+                    </sp><!--@who="SCARAMOUCHE"-->
+</div>
+</div>
+</body>
+</text>
+</TEI>
