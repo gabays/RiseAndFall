@@ -1,3 +1,7 @@
+SuperStyl/
+Make_corpus.bash
+env/
+
 #mac users
 .DS_Store
 
