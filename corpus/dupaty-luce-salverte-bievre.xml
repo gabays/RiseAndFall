@@ -6,13 +6,13 @@
                 <title type="sub">Ou l'Abus de l'Esprit</title>
                 <title type="sub">Calembour, en un Acte et en Vaudeville.</title>
                 <author>
-      <idno type="isni">0000000121296128</idno>
-      <idno type="wikidata">Q747</idno>
-      <persName>
-        <forename>Pierre</forename>
-        <surname>Corneille</surname>
-      </persName>
-    </author><!--CORNEILLE, Pierre (1606-1684)-->
+                    <idno type="isni">0000000122768027</idno>
+                    <idno type="wikidata">Q3052692</idno>
+                    <persName>
+                        <forename>Emmanuel</forename>
+                        <surname>Dupaty</surname>
+                    </persName>
+                </author><!--CORNEILLE, Pierre (1606-1684)-->
             </titleStmt>
             <publicationStmt>
                 <publisher xml:id="dracor">DraCor</publisher>
@@ -69,7 +69,7 @@
             </particDesc>
             <textClass>
                 <keywords scheme="http://theatre-classique.fr"> <!--extracted from "genre" and "type" elements-->
-                    <term type="genre">comedy</term>
+                    <term type="genre">vaudeville</term>
                     <term type="form">mixte</term>
                 </keywords>
                 <classCode scheme="http://www.wikidata.org/entity/">Q40831</classCode>

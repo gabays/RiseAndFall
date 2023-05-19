@@ -3,7 +3,7 @@
         <fileDesc>
             <titleStmt>
                 <title type="main">La Trésorière</title>
-                <title type="sub">Tragédie</title>
+                <title type="sub">Comédie</title>
                 <author>
       <idno type="isni">0000000117542496</idno>
       <idno type="wikidata">Q1678003</idno>
@@ -78,7 +78,7 @@
             </particDesc>
             <textClass>
                 <keywords scheme="http://theatre-classique.fr"> <!--extracted from "genre" and "type" elements-->
-                    <term type="genre">tragedy</term>
+                    <term type="genre">comedy</term>
                     <term type="form">verse</term>
                 </keywords>
                 <classCode scheme="http://www.wikidata.org/entity/">Q40831</classCode>
