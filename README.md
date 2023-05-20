@@ -6,24 +6,30 @@ Comes from [DraCor](https://github.com/dracor-org). It has been cleaned, especia
 
 ## Build the data
 
+All the data are already available in csv format ([3grams are here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n3_k_5000.csv) and [stopwords are here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n1_k_5000.csv)). But if needed you can recreate them.
+
+1. Extract the text from the xml
+
 ```console
 bash Make_corpus.bash
 ```
 
-Install [SuperStyl](https://github.com/SupervisedStylometry/SuperStyl)
+2. Install [SuperStyl](https://github.com/SupervisedStylometry/SuperStyl)
 
-Create the 3grams [csv already here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n3_k_5000.csv) if needed)
+ * Create data with 3grams
 
 ```console
 python3 main.py -s ../txt/* -t chars -n 3
 ```
 
-and keep the stopwords ([csv already here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n1_k_5000.csv) if needed)
+ * Create data with stopwords
 ```console
 python3 main.py -s ../txt/* -t words -n 1 -f ../mots_outils.json
 ```
 
 ## Cite
+
+This research has been presented at [DH Benelux 2023](https://2023.dhbenelux.org).
 
 ```bibtex
 @inproceedings{cafiero:hal-04093598,
