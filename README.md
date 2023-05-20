@@ -1,4 +1,4 @@
-# BirthOfStyle
+# Rise and Fall of Theatrical Genres in Early Modern France
 
 ## Data
 
