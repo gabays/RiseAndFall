@@ -881,7 +881,7 @@ ggsave("R/images/distance2author_tragedy_racine.png", plot=vizEvoCentroid, width
 vizEvoCentroid
 ```
 
-## 5.2.2  Distance to genre
+### 5.2.2  Distance to genre
 
 ```{r}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -901,7 +901,7 @@ ggsave("R/images/distance2genre_tragedy.png", plot=vizEvoCentroid, width = 2500,
 vizEvoCentroid
 ```
 
-### 5.2.2.1 Voltaire
+#### 5.2.2.1 Voltaire
 
 ```{r}
 df_tragedy$color<-df_tragedy$author
@@ -920,7 +920,7 @@ ggsave("R/images/distance2genre_tragedy_voltaire.png", plot=vizEvoCentroid, widt
 vizEvoCentroid
 ```
 
-### 5.2.2.2 Crébillon
+#### 5.2.2.2 Crébillon
 
 ```{r}
 df_tragedy$color<-df_tragedy$author
@@ -939,7 +939,7 @@ ggsave("R/images/distance2genre_tragedy_crebillon.png", plot=vizEvoCentroid, wid
 vizEvoCentroid
 ```
 
-### 5.2.2.3 Racine
+#### 5.2.2.3 Racine
 
 ```{r}
 df_tragedy$color<-df_tragedy$author
@@ -958,7 +958,7 @@ ggsave("R/images/distance2genre_tragedy_racine.png", plot=vizEvoCentroid, width 
 vizEvoCentroid
 ```
 
-## 5.2.3  Distance between the two centroids
+### 5.2.3  Distance between the two centroids
 
 ```{r}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=rownames(df_tragedy)))+
@@ -1150,7 +1150,7 @@ ggsave("R/images/distance2author_tragedy_racine.png", plot=vizEvoCentroid, width
 vizEvoCentroid
 ```
 
-## 5.2.2 Distance to genre
+### 5.2.2 Distance to genre
 
 ```{r}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -1170,7 +1170,7 @@ ggsave("R/images/distance2genre_tragedy.png", plot=vizEvoCentroid, width = 2500,
 vizEvoCentroid
 ```
 
-### 5.2.2.1 Voltaire
+#### 5.2.2.1 Voltaire
 
 ```{r}
 df_tragedy$color<-df_tragedy$author
@@ -1189,7 +1189,7 @@ ggsave("R/images/distance2genre_tragedy_voltaire.png", plot=vizEvoCentroid, widt
 vizEvoCentroid
 ```
 
-### 5.2.2.2 Crébillon
+#### 5.2.2.2 Crébillon
 
 ```{r}
 df_tragedy$color<-df_tragedy$author
@@ -1208,7 +1208,7 @@ ggsave("R/images/distance2genre_tragedy_crebillon.png", plot=vizEvoCentroid, wid
 vizEvoCentroid
 ```
 
-### 5.2.2.3 Racine
+#### 5.2.2.3 Racine
 
 ```{r}
 df_tragedy$color<-df_tragedy$author
@@ -1227,7 +1227,7 @@ ggsave("R/images/distance2genre_tragedy_racine.png", plot=vizEvoCentroid, width 
 vizEvoCentroid
 ```
 
-## 5.2.3  Distance between the two centroids
+### 5.2.3  Distance between the two centroids
 
 ```{r}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=rownames(df_tragedy)))+
