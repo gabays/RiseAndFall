@@ -8,7 +8,7 @@ Comes from [DraCor](https://github.com/dracor-org). It has been cleaned, especia
 
 All the data are already available in csv format ([3grams are here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n3_k_5000.csv) and [stopwords are here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n1_k_5000.csv)). But if needed you can recreate them.
 
-1. Extract the text from the xml
+1. Extract the text and the metadata from the xml
 
 ```console
 bash Make_corpus.bash
