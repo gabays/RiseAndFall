@@ -18,6 +18,11 @@ Create the 3grams
 python3 main.py -s ../txt/* -t chars -n 3
 ```
 
+and 
+```bash
+python3 main.py -s ../txt/* -t words -n 1 -f ../mots_outils.json
+```
+
 ## Cite
 
-Simon Gabay and Florian Cafiero, _Rise And Fall_, university of Geneva, 2023
+Simon Gabay and Florian Cafiero, _Rise And Fall_, university of Geneva/Sciences Po Paris, 2023
