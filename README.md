@@ -40,8 +40,6 @@ This research has been presented at [DH Benelux 2023](https://2023.dhbenelux.org
   ADDRESS = {Bruxelles, Belgium},
   YEAR = {2023},
   MONTH = May,
-  KEYWORDS = {Stylometry ; French theatre ; 17th \& 18th centuries ; Stylistics ; Stylom{\'e}trie ; Stylistique  litt{\'e}rature fran{\c c}aise ; Th{\'e}{\^a}tre classique -- France},
-  PDF = {https://hal.science/hal-04093598/file/DhBenelux_2023.pdf},
   HAL_ID = {hal-04093598},
   HAL_VERSION = {v1},
 }
