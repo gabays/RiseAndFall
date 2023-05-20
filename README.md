@@ -19,7 +19,7 @@ python3 main.py -s ../txt/* -t chars -n 3
 ```
 
 and 
-```bash
+```console
 python3 main.py -s ../txt/* -t words -n 1 -f ../mots_outils.json
 ```
 
