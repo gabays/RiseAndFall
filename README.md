@@ -25,4 +25,18 @@ python3 main.py -s ../txt/* -t words -n 1 -f ../mots_outils.json
 
 ## Cite
 
-Simon Gabay and Florian Cafiero, _Rise And Fall_, university of Geneva/Sciences Po Paris, 2023
+```bibtex
+@inproceedings{cafiero:hal-04093598,
+  TITLE = {{Rise and Fall of Theatrical Genres in Early Modern France:}},
+  AUTHOR = {Cafiero, Florian and Gabay, Simon},
+  URL = {https://hal.science/hal-04093598},
+  BOOKTITLE = {{DH Benelux}},
+  ADDRESS = {Bruxelles, Belgium},
+  YEAR = {2023},
+  MONTH = May,
+  KEYWORDS = {Stylometry ; French theatre ; 17th \& 18th centuries ; Stylistics ; Stylom{\'e}trie ; Stylistique  litt{\'e}rature fran{\c c}aise ; Th{\'e}{\^a}tre classique -- France},
+  PDF = {https://hal.science/hal-04093598/file/DhBenelux_2023.pdf},
+  HAL_ID = {hal-04093598},
+  HAL_VERSION = {v1},
+}
+```
