@@ -12,13 +12,13 @@ bash Make_corpus.bash
 
 Install [SuperStyl](https://github.com/SupervisedStylometry/SuperStyl)
 
-Create the 3grams
+Create the 3grams [csv already here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n3_k_5000.csv) if needed)
 
 ```console
 python3 main.py -s ../txt/* -t chars -n 3
 ```
 
-and 
+and keep the stopwords ([csv already here](https://github.com/gabays/RiseAndFall/blob/main/feats_tests_n1_k_5000.csv) if needed)
 ```console
 python3 main.py -s ../txt/* -t words -n 1 -f ../mots_outils.json
 ```
