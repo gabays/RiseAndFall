@@ -1,5 +1,9 @@
 SuperStyl/
 env/
+R/RiseAndFall.RData
+R/RiseAndFall.Rmd.bak.Rmd
+R/auctorial.Rmd
+R/main.Rmd
 
 #mac users
 .DS_Store
