@@ -78,7 +78,7 @@
             </particDesc>
             <textClass>
                 <keywords scheme="http://theatre-classique.fr"> <!--extracted from "genre" and "type" elements-->
-                    <term type="genre">comedy</term>
+                    <term type="genre">drama</term>
                     <term type="form">prose</term>
                 </keywords>
                 <classCode scheme="http://www.wikidata.org/entity/">Q192881</classCode>

@@ -45,6 +45,10 @@ if(!require("stylo")){
   install.packages("stylo")
   library(stylo)
 }
+if(!require("dplyr")){
+  install.packages("dplyr")
+  library(dplyr)
+}
 ```
 
 Load external functions
@@ -56,7 +60,7 @@ source("./R/functions.R")
 Load previously computed data
 
 ```{r}
-load("./R/RiseAndFall.RData")
+#load("./R/RiseAndFall.RData")
 ```
 
 # 2. Set up
@@ -165,9 +169,9 @@ We control that stopwords do identify genres
 
 ```{r}
 
-distToTragedy <- DistToCentroid(d_stop, centroid = rowMeans(d_stop[, metadata[, "Genre"] == "tragedy"]))
+distToTragedy <- DistToCentroid(d_stop, centroid = rowMeans(d_stop[, metadata[, "Genre"] == "tragedy" & metadata[, "Date"] <1800 & metadata[, "Date"] >1500]))
 
-distToComedy <- DistToCentroid(d_stop, centroid = rowMeans(d_stop[, metadata[, "Genre"] == "comedy"]))
+distToComedy <- DistToCentroid(d_stop, centroid = rowMeans(d_stop[, metadata[, "Genre"] == "comedy" & metadata[, "Date"] <1800 & metadata[, "Date"] >1500]))
 
 m <- cbind(distToTragedy, distToComedy)
 colnames(m) <- c("DistTragedyCentroid","DistComedyCentroid")
@@ -211,7 +215,7 @@ check_anomalies<-as.data.frame(cbind(m,literaryGenre))
 subset(check_anomalies, literaryGenre == '2' & DistTragedyCentroid <9)
 ```
 
-### 3.1.2 generic value of stopwords
+### 3.1.2 generic value of 3-grams
 
 We control that 3-grams do identify genres
 
@@ -246,22 +250,65 @@ legend(18, 38, c("comedy", "tragedy"),col=c("blue", "red"),pch=1)
 grid(nx = NULL, ny = NULL, lty = 1, col = "gray", lwd = 1)
 dev.off() 
 ```
-Results are more precise than with stopwords.
+
+Results are more precise than with stopwords. Now we do the same, but only with plays written between 1500 and 1800:
+
+```{r}
+#Centroid of tragedies
+distToTragedy <- DistToCentroid(d, centroid = rowMeans(d[, metadata[, "Genre"] == "tragedy" & metadata[, "Date"] <1800 & metadata[, "Date"] >1500]))
+
+#Centroid of comedies
+distToComedy <- DistToCentroid(d, centroid = rowMeans(d[, metadata[, "Genre"] == "comedy" & metadata[, "Date"] <1800 & metadata[, "Date"] >1500]))
+
+#On dataframe with two values
+m <- cbind(distToTragedy, distToComedy)
+colnames(m) <- c("DistTragedyCentroid","DistComedyCentroid")
+
+#getting rid of too old/too recent plays
+m<-t(m)
+m_clean<-m[,  metadata[, "Date"] <1800 & metadata[, "Date"] >1500]
+m_clean<-t(m_clean)
+m_clean2<-na.omit(m_clean)
+metadata_clean <- filter(metadata, Date<"1800" & Date>"1500" )
+
+#create transparent color
+mycol <- t_col("white", perc = 100, name = "transparent")
+
+#fix colors
+colors <- metadata_clean[, "Genre"]
+levels(colors) = c("transparent","blue", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "red", "transparent", "transparent")
+#plot
+plot(m_clean2, col=as.character(colors))
+legend(18, 38, c("comedy", "tragedy"),col=c("blue", "red"),pch=1)
+grid(nx = NULL, ny = NULL,
+     lty = 1,      # Grid line type
+     col = "gray", # Grid line color
+     lwd = 1)      # Grid line width
+# text(m[, 1], m[, 2], labels=row.names(m), cex= 0.1) # To add the name of the plays
+
+#Save the image
+png("./R/images/clusters_3grams.png", width = 2500, height = 2000, res=300) 
+plot(m_clean2)
+legend(18, 38, c("comedy", "tragedy"),pch=1)
+grid(nx = NULL, ny = NULL, lty = 1, col = "gray", lwd = 1)
+dev.off() 
+```
+
 
 We control tragedies classified with comedies:
 
 ```{r}
-literaryGenre <- metadata[, "Genre"]
-check_anomalies<-as.data.frame(cbind(m,literaryGenre))
-subset(check_anomalies, literaryGenre == '10' & DistTragedyCentroid >34)
+literaryGenre <- metadata_clean[, "Genre"]
+check_anomalies<-as.data.frame(cbind(m_clean2,literaryGenre))
+subset(check_anomalies, literaryGenre == '10' & DistTragedyCentroid >33)
 ```
 
 We control comedies classified with tragedies:
 
 ```{r}
-literaryGenre <- metadata[, "Genre"]
-check_anomalies<-as.data.frame(cbind(m,literaryGenre))
-subset(check_anomalies, literaryGenre == '2' & DistTragedyCentroid <29)
+literaryGenre <- metadata_clean[, "Genre"]
+check_anomalies<-as.data.frame(cbind(m_clean2,literaryGenre))
+subset(check_anomalies, literaryGenre == '2' & DistTragedyCentroid <32)
 ```
 
 ## 3.2 Within inertia of the two clusters
@@ -323,7 +370,7 @@ evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='tragedy' & meta
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
   geom_smooth(method = loess, size = 1)+ theme_bw()
-ggsave("./R/images/tragedy3.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("./R/images/tragedy3grams.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
@@ -339,7 +386,7 @@ evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='tragedy' & meta
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
   geom_smooth(method = loess, size = 1)+ theme_bw()
-ggsave("./R/images/tragedyW.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("./R/images/tragedyWords.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
@@ -355,7 +402,7 @@ evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='tragedy' & meta
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
   geom_smooth(method = loess, size = 1)+ theme_bw()
-ggsave("./R/images/tragedy3.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("./R/images/tragedyStop.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
@@ -373,7 +420,7 @@ evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='comedy' & metad
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
   geom_smooth(method = loess, size = 1)+ theme_bw()
-ggsave("./R/images/comedy3.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("./R/images/comedy3grams.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
@@ -389,7 +436,7 @@ evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='comedy' & metad
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
   geom_smooth(method = loess, size = 1)+ theme_bw()
-ggsave("./R/images/comedyW.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("./R/images/comedyWords.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
@@ -405,7 +452,7 @@ evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='comedy' & metad
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
   geom_smooth(method = loess, size = 1)+ theme_bw()
-ggsave("./R/images/comedy3.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("./R/images/comedyStop.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
@@ -522,7 +569,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 240] <- "blue"
+df_comedy$color[df_comedy$color == 168] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_comedy)))+
@@ -541,7 +588,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 213] <- "blue"
+df_comedy$color[df_comedy$color == 148] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_comedy)))+
@@ -560,7 +607,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 68] <- "blue"
+df_comedy$color[df_comedy$color == 249] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_comedy)))+
@@ -579,7 +626,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 262] <- "blue"
+df_comedy$color[df_comedy$color == 184] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_comedy)))+
@@ -618,7 +665,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 240] <- "blue"
+df_comedy$color[df_comedy$color == 168] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_comedy)))+
@@ -637,7 +684,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 213] <- "blue"
+df_comedy$color[df_comedy$color == 148] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_comedy)))+
@@ -656,7 +703,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 68] <- "blue"
+df_comedy$color[df_comedy$color == 249] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_comedy)))+
@@ -675,7 +722,7 @@ vizEvoCentroid
 ```{r}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
-df_comedy$color[df_comedy$color == 262] <- "blue"
+df_comedy$color[df_comedy$color == 184] <- "blue"
 df_comedy$color[df_comedy$color != "blue"] <- "white"
 truc<-df_comedy$color
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_comedy)))+
@@ -848,7 +895,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 181] <- "blue"
+df_tragedy$color[df_tragedy$color == 131] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
@@ -867,7 +914,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 264] <- "blue"
+df_tragedy$color[df_tragedy$color == 185] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
@@ -906,7 +953,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 213] <- "blue"
+df_tragedy$color[df_tragedy$color == 148] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -925,7 +972,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 181] <- "blue"
+df_tragedy$color[df_tragedy$color == 131] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -944,7 +991,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 264] <- "blue"
+df_tragedy$color[df_tragedy$color == 185] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -1175,7 +1222,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 213] <- "blue"
+df_tragedy$color[df_tragedy$color == 148] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -1194,7 +1241,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 181] <- "blue"
+df_tragedy$color[df_tragedy$color == 131] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
@@ -1213,7 +1260,7 @@ vizEvoCentroid
 ```{r}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 264] <- "blue"
+df_tragedy$color[df_tragedy$color == 185] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
