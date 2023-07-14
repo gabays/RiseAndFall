@@ -117,7 +117,7 @@ tail(t(control))
 
 Alternative: loading plays in plain text (for later)
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 corpus<-list()
 #Get the list of all txt files
 TxtFiles <- list.files(path = "txt",pattern = "txt$")
@@ -138,7 +138,7 @@ View(corpus)
 
 We transform the loaded texts into minable data
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #tokenisation
 corpus.tok = lapply(corpus, txt.to.words2)
 #Counting frequency of tokens
@@ -163,11 +163,11 @@ View(corpus.tok.list.freq)
 
 ## 3.1 Generic value of features
 
-### 3.1.1 generic value of stopwords
+### 3.1.1 Generic value of stopwords
 
 We control that stopwords do identify genres
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 
 distToTragedy <- DistToCentroid(d_stop, centroid = rowMeans(d_stop[, metadata[, "Genre"] == "tragedy" & metadata[, "Date"] <1800 & metadata[, "Date"] >1500]))
 
@@ -215,11 +215,11 @@ check_anomalies<-as.data.frame(cbind(m,literaryGenre))
 subset(check_anomalies, literaryGenre == '2' & DistTragedyCentroid <9)
 ```
 
-### 3.1.2 generic value of 3-grams
+### 3.1.2 Generic value of 3-grams
 
 We control that 3-grams do identify genres
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 
 distToTragedy <- DistToCentroid(d, centroid = rowMeans(d[, metadata[, "Genre"] == "tragedy"]))
 
@@ -253,7 +253,7 @@ dev.off()
 
 Results are more precise than with stopwords. Now we do the same, but only with plays written between 1500 and 1800:
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #Centroid of tragedies
 distToTragedy <- DistToCentroid(d, centroid = rowMeans(d[, metadata[, "Genre"] == "tragedy" & metadata[, "Date"] <1800 & metadata[, "Date"] >1500]))
 
@@ -288,8 +288,8 @@ grid(nx = NULL, ny = NULL,
 
 #Save the image
 png("./R/images/clusters_3grams.png", width = 2500, height = 2000, res=300) 
-plot(m_clean2)
-legend(18, 38, c("comedy", "tragedy"),pch=1)
+plot(m_clean2, col=as.character(colors))
+legend(18, 38, c("comedy", "tragedy"),col=c("blue", "red"),pch=1)
 grid(nx = NULL, ny = NULL, lty = 1, col = "gray", lwd = 1)
 dev.off() 
 ```
@@ -312,6 +312,8 @@ subset(check_anomalies, literaryGenre == '2' & DistTragedyCentroid <32)
 ```
 
 ## 3.2 Within inertia of the two clusters
+
+Warning: on all the dataset, not on plays written between 1500 and 1800.
 
 ```{r}
 #Get all possible genres
@@ -365,7 +367,7 @@ tragedies <- d[, metadata[, "Genre"] == 'tragedy' & metadata[, "Date"] <1800 & m
 tragediesToCentroid = DistToCentroid(tragedies, method="manhattan")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='tragedy' & metadata[, "Date"] <1800 & metadata[, "Date"] >1500, ])
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
@@ -381,7 +383,7 @@ tragedies <- corpus.tok.list.freq[, metadata[, "Genre"] == 'tragedy' & metadata[
 tragediesToCentroid = DistToCentroid(tragedies, method="manhattan")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='tragedy' & metadata[, "Date"] <1800 & metadata[, "Date"] >1500, ])
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
@@ -397,7 +399,7 @@ tragedies <- d_stop[, metadata[, "Genre"] == 'tragedy' & metadata[, "Date"] <180
 tragediesToCentroid = DistToCentroid(tragedies, method="manhattan")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='tragedy' & metadata[, "Date"] <1800 & metadata[, "Date"] >1500, ])
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
@@ -415,7 +417,7 @@ tragedies <- d[, metadata[, "Genre"] == 'comedy' & metadata[, "Date"] <1800 & me
 tragediesToCentroid = DistToCentroid(tragedies, method="manhattan")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='comedy' & metadata[, "Date"] <1800 & metadata[, "Date"] >1500, ])
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
@@ -431,7 +433,7 @@ tragedies <- corpus.tok.list.freq[, metadata[, "Genre"] == 'comedy' & metadata[,
 tragediesToCentroid = DistToCentroid(tragedies, method="manhattan")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='comedy' & metadata[, "Date"] <1800 & metadata[, "Date"] >1500, ])
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
@@ -447,7 +449,7 @@ tragedies <- d_stop[, metadata[, "Genre"] == 'comedy' & metadata[, "Date"] <1800
 tragediesToCentroid = DistToCentroid(tragedies, method="manhattan")
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 evoCentroid<-cbind(tragediesToCentroid,metadata[metadata$Genre=='comedy' & metadata[, "Date"] <1800 & metadata[, "Date"] >1500, ])
 vizEvoCentroid <- ggplot(data = evoCentroid, mapping = aes(x = Date, y = DistToCentroid))+
   geom_point(stat = "summary", fun = "mean")+ 
@@ -546,7 +548,7 @@ colnames(df_comedy) <- x
 
 ### 5.1.1 Distance to author
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_comedy)))+
 vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
@@ -566,7 +568,7 @@ vizEvoCentroid
 
 #### 5.1.1.1 Marivaux
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 168] <- "blue"
@@ -585,7 +587,7 @@ vizEvoCentroid
 
 #### 5.1.1.2 Voltaire
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 148] <- "blue"
@@ -604,7 +606,7 @@ vizEvoCentroid
 
 #### 5.1.1.3 Boissy
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 249] <- "blue"
@@ -623,7 +625,7 @@ vizEvoCentroid
 
 #### 5.1.1.4 Molière
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 184] <- "blue"
@@ -642,7 +644,7 @@ vizEvoCentroid
 
 ### 5.1.2 Distance to genre
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_comedy)))+
 vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
@@ -662,7 +664,7 @@ vizEvoCentroid
 
 #### 5.1.2.1 Marivaux
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 168] <- "blue"
@@ -681,7 +683,7 @@ vizEvoCentroid
 
 #### 5.1.2.2 Voltaire
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 148] <- "blue"
@@ -700,7 +702,7 @@ vizEvoCentroid
 
 #### 5.1.2.3 Boissy
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 249] <- "blue"
@@ -719,7 +721,7 @@ vizEvoCentroid
 
 #### 5.1.2.4 Molière
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_comedy$color<-df_comedy$author
 df_comedy$color<-as.numeric(df_comedy$color)
 df_comedy$color[df_comedy$color == 184] <- "blue"
@@ -738,7 +740,7 @@ vizEvoCentroid
 
 ### 5.1.3 Distance between the two centroids
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=rownames(df_comedy)))+
 vizEvoCentroid <- ggplot(data = df_comedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author), show.legend = FALSE)+ 
@@ -751,7 +753,7 @@ vizEvoCentroid
 
 Controlling variance
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # with 4 plays
 #x <- 1:71
 x <- 1:nrow(df_comedy)
@@ -853,7 +855,7 @@ colnames(df_tragedy) <- x
 
 ### 5.2.1 Distance to author
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
 vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
@@ -873,10 +875,10 @@ vizEvoCentroid
 
 #### 5.2.1.1 Voltaire
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 213] <- "blue"
+df_tragedy$color[df_tragedy$color == 148] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
@@ -892,7 +894,7 @@ vizEvoCentroid
 
 #### 5.2.1.2 Crébillon
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 131] <- "blue"
@@ -911,7 +913,7 @@ vizEvoCentroid
 
 #### 5.2.1.2 Racine
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 185] <- "blue"
@@ -930,7 +932,7 @@ vizEvoCentroid
 
 ### 5.2.2  Distance to genre
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
 vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
@@ -950,7 +952,7 @@ vizEvoCentroid
 
 #### 5.2.2.1 Voltaire
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 148] <- "blue"
@@ -969,7 +971,7 @@ vizEvoCentroid
 
 #### 5.2.2.2 Crébillon
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 131] <- "blue"
@@ -988,7 +990,7 @@ vizEvoCentroid
 
 #### 5.2.2.3 Racine
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 185] <- "blue"
@@ -1007,10 +1009,10 @@ vizEvoCentroid
 
 ### 5.2.3  Distance between the two centroids
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=rownames(df_tragedy)))+
 vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=author))+
-  geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
+  geom_point(stat = "summary", fun = "mean", aes(colour = author), show.legend = FALSE)+ 
   geom_smooth(method = loess, size = 1)+
   xlab("Date") + ylab("Distance")+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
@@ -1020,7 +1022,7 @@ vizEvoCentroid
 
 Controlling variance
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # with 4 plays
 #x <- 1:71
 x <- 1:nrow(df_tragedy)
@@ -1120,9 +1122,9 @@ labelPoints<-rownames(df_tragedy)
 colnames(df_tragedy) <- x
 ```
 
-### 5.2.1 Distance to author
+### 5.3.1 Distance to author
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
 vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
@@ -1136,16 +1138,16 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   geom_smooth(method = loess, size = 1)+
   xlab("Date") + ylab("Distance to the author")+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2author_tragedy.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2author_tragedy.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-#### 5.2.1.1 Voltaire
+#### 5.3.1.1 Voltaire
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 213] <- "blue"
+df_tragedy$color[df_tragedy$color == 148] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
@@ -1155,16 +1157,16 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   xlab("Date") + ylab("Distance to the author")+
   scale_color_manual(values =c("blue"="blue","white"="transparent"))+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2author_tragedy_voltaire.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2author_tragedy_voltaire.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-#### 5.2.1.2 Crébillon
+#### 5.3.1.2 Crébillon
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 181] <- "blue"
+df_tragedy$color[df_tragedy$color == 131] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
@@ -1174,16 +1176,16 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   xlab("Date") + ylab("Distance to the author")+
   scale_color_manual(values =c("blue"="blue","white"="transparent"))+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2author_tragedy_crebillon.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2author_tragedy_crebillon.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-#### 5.2.1.3 Racine
+#### 5.3.1.3 Racine
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
-df_tragedy$color[df_tragedy$color == 264] <- "blue"
+df_tragedy$color[df_tragedy$color == 185] <- "blue"
 df_tragedy$color[df_tragedy$color != "blue"] <- "white"
 truc<-df_tragedy$color
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2author), label=rownames(df_tragedy)))+
@@ -1193,13 +1195,13 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   xlab("Date") + ylab("Distance to the author")+
   scale_color_manual(values =c("blue"="blue","white"="transparent"))+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2author_tragedy_racine.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2author_tragedy_racine.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-### 5.2.2 Distance to genre
+### 5.3.2 Distance to genre
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=rownames(df_tragedy)))+
 vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance2genre), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
@@ -1213,13 +1215,13 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   geom_smooth(method = loess, size = 1)+
   xlab("Date") + ylab("Distance to the genre") +
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2genre_tragedy.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2genre_tragedy.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-#### 5.2.2.1 Voltaire
+#### 5.3.2.1 Voltaire
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 148] <- "blue"
@@ -1232,13 +1234,13 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   xlab("Date") + ylab("Distance to the genre")+
   scale_color_manual(values =c("blue"="blue","white"="transparent"))+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2genre_tragedy_voltaire.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2genre_tragedy_voltaire.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-#### 5.2.2.2 Crébillon
+#### 5.3.2.2 Crébillon
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 131] <- "blue"
@@ -1251,13 +1253,13 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   xlab("Date") + ylab("Distance to the genre")+
   scale_color_manual(values =c("blue"="blue","white"="transparent"))+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2genre_tragedy_crebillon.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2genre_tragedy_crebillon.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-#### 5.2.2.3 Racine
+#### 5.3.2.3 Racine
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 df_tragedy$color<-df_tragedy$author
 df_tragedy$color<-as.numeric(df_tragedy$color)
 df_tragedy$color[df_tragedy$color == 185] <- "blue"
@@ -1270,26 +1272,26 @@ vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), 
   xlab("Date") + ylab("Distance to the genre")+
   scale_color_manual(values =c("blue"="blue","white"="transparent"))+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/distance2genre_tragedy_racine.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_distance2genre_tragedy_racine.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
-### 5.2.3  Distance between the two centroids
+### 5.3.3  Distance between the two centroids
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 #vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=rownames(df_tragedy)))+
 vizEvoCentroid <- ggplot(data = df_tragedy, mapping = aes(x = as.numeric(date), y = as.numeric(distance), label=author))+
   geom_point(stat = "summary", fun = "mean", aes(colour = author))+ 
   geom_smooth(method = loess, size = 1)+
   xlab("Date") + ylab("Distance")+
   theme_bw() #+geom_text(hjust=0, vjust=0, size=3)
-ggsave("R/images/spread_tragedy.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
+ggsave("R/images/test_spread_tragedy.png", plot=vizEvoCentroid, width = 2500, height = 2000, units = "px", dpi = 300)
 vizEvoCentroid
 ```
 
 Controlling variance
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # with 4 plays
 #x <- 1:71
 x <- 1:nrow(df_tragedy)
